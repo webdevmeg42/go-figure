@@ -1,0 +1,45 @@
+# go-figure example test suite
+# Run with: BASE_URL=https://jsonplaceholder.typicode.com go-figure run testdata/example.yaml
+
+tests:
+  - name: "Get post"
+    request:
+      method: GET
+      url: "{{BASE_URL}}/posts/1"
+      timeout: 10s
+    assertions:
+      status: 200
+      body:
+        contains: "userId"
+      headers:
+        Content-Type: "application/json; charset=utf-8"
+      latency_ms: 3000
+      json_schema: |
+        {
+          "type": "object",
+          "required": ["userId", "id", "title", "body"]
+        }
+
+  - name: "List posts"
+    request:
+      method: GET
+      url: "{{BASE_URL}}/posts"
+      timeout: 10s
+    assertions:
+      status: 200
+      body:
+        contains: "userId"
+      latency_ms: 5000
+
+  - name: "Create post"
+    request:
+      method: POST
+      url: "{{BASE_URL}}/posts"
+      headers:
+        Content-Type: "application/json"
+      body: '{"title":"go-figure","body":"test","userId":1}'
+      timeout: 10s
+    assertions:
+      status: 201
+      body:
+        contains: "id"
