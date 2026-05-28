@@ -1,6 +1,6 @@
 module github.com/webdevmeg42/go-figure
 
-go 1.26.3
+go 1.22
 
 require (
 	github.com/fatih/color v1.19.0
