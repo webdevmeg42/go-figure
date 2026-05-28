@@ -108,9 +108,7 @@ func evaluate(
 			failures = append(failures, msg)
 		}
 	}
-	for _, msg := range assertHeaders(a.Headers, headers) {
-		failures = append(failures, msg)
-	}
+	failures = append(failures, assertHeaders(a.Headers, headers)...)
 	if msg := assertLatency(a.LatencyMs, latency); msg != "" {
 		failures = append(failures, msg)
 	}

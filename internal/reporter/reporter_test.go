@@ -8,9 +8,9 @@ import (
 	"time"
 
 	"github.com/fatih/color"
+	"github.com/stretchr/testify/assert"
 	"github.com/webdevmeg42/go-figure/internal/reporter"
 	"github.com/webdevmeg42/go-figure/internal/runner"
-	"github.com/stretchr/testify/assert"
 )
 
 // Disable ANSI color codes so we can assert on plain text.

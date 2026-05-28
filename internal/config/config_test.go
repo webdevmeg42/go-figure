@@ -5,9 +5,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/webdevmeg42/go-figure/internal/config"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"github.com/webdevmeg42/go-figure/internal/config"
 )
 
 // writeTemp writes content to a temporary YAML file and returns its path.
