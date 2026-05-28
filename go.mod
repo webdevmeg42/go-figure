@@ -3,7 +3,7 @@ module github.com/webdevmeg42/go-figure
 go 1.22
 
 require (
-	github.com/fatih/color v1.19.0
+	github.com/fatih/color v1.18.0
 	github.com/spf13/cobra v1.10.2
 	github.com/stretchr/testify v1.11.1
 	github.com/xeipuuv/gojsonschema v1.2.0
@@ -19,5 +19,5 @@ require (
 	github.com/spf13/pflag v1.0.9 // indirect
 	github.com/xeipuuv/gojsonpointer v0.0.0-20180127040702-4e3ac2762d5f // indirect
 	github.com/xeipuuv/gojsonreference v0.0.0-20180127040603-bd5ef7bd5415 // indirect
-	golang.org/x/sys v0.42.0 // indirect
+	golang.org/x/sys v0.29.0 // indirect
 )
