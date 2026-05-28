@@ -6,17 +6,22 @@ linters:
     - errcheck
     - govet
     - staticcheck
-    - gofmt
     - ineffassign
     - unused
 
-  settings:
-    gofmt:
-      simplify: true
-
   exclusions:
+    presets:
+      - std-error-handling
     rules:
       # Test files don't need to check all errors
       - path: "_test\\.go"
         linters:
           - errcheck
+
+formatters:
+  enable:
+    - gofmt
+
+  settings:
+    gofmt:
+      simplify: true
