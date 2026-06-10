@@ -14,7 +14,7 @@ var placeholderRe = regexp.MustCompile(`\{\{([A-Z0-9_]+)\}\}`)
 func Substitute(suite *Suite) {
 	replace := func(s string) string {
 		return placeholderRe.ReplaceAllStringFunc(s, func(match string) string {
-			key := placeholderRe.FindStringSubmatch(match)[1]
+			key := match[2 : len(match)-2]
 			if val := os.Getenv(key); val != "" {
 				return val
 			}

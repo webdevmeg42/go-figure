@@ -18,7 +18,7 @@ var (
 // Print renders test results to w with colored pass/fail indicators and a summary line.
 // Failure details are indented beneath each failing test.
 // Set color.NoColor = true in tests to disable ANSI codes for plain-text assertions.
-func Print(w io.Writer, results []runner.Result) {
+func Print(w io.Writer, results []runner.Result) bool {
 	fmt.Fprintln(w)
 
 	passed := 0
@@ -41,16 +41,11 @@ func Print(w io.Writer, results []runner.Result) {
 	fmt.Fprintln(w, "  ───────────────────────────────────")
 
 	failed := len(results) - passed
-	summary := fmt.Sprintf("  %d/%d passed", passed, len(results))
 	if failed > 0 {
-		summary += fmt.Sprintf("  ·  %d failed", failed)
-	}
-	summary += fmt.Sprintf("  ·  %dms total", total.Milliseconds())
-
-	if failed > 0 {
-		red.Fprintln(w, summary)
+		red.Fprintln(w, fmt.Sprintf("  %d/%d passed  ·  %d failed  ·  %dms total", passed, len(results), failed, total.Milliseconds()))
 	} else {
-		green.Fprintln(w, summary)
+		green.Fprintln(w, fmt.Sprintf("  %d/%d passed  ·  %dms total", passed, len(results), total.Milliseconds()))
 	}
 	fmt.Fprintln(w)
+	return failed == 0
 }

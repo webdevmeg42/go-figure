@@ -77,7 +77,8 @@ func Parse(path string) (*Suite, error) {
 		return nil, fmt.Errorf("parsing YAML: %w", err)
 	}
 
-	for i, t := range suite.Tests {
+	for i := range suite.Tests {
+		t := &suite.Tests[i]
 		if t.Name == "" {
 			return nil, fmt.Errorf("test %d: missing name", i)
 		}
@@ -87,8 +88,8 @@ func Parse(path string) (*Suite, error) {
 		if t.Request.URL == "" {
 			return nil, fmt.Errorf("test %q: missing request.url", t.Name)
 		}
-		if suite.Tests[i].Request.Timeout.Duration == 0 {
-			suite.Tests[i].Request.Timeout.Duration = 10 * time.Second
+		if t.Request.Timeout.Duration == 0 {
+			t.Request.Timeout.Duration = 10 * time.Second
 		}
 	}
 

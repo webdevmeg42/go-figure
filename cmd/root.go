@@ -31,12 +31,8 @@ var runCmd = &cobra.Command{
 		}
 
 		results := runner.Run(suite)
-		reporter.Print(os.Stdout, results)
-
-		for _, r := range results {
-			if !r.Passed {
-				os.Exit(1)
-			}
+		if !reporter.Print(os.Stdout, results) {
+			os.Exit(1)
 		}
 		return nil
 	},

@@ -15,7 +15,7 @@ Most HTTP testing tools are either language-specific test frameworks or heavy GU
 ## Sample output
 
 ```
-go-figure v0.1.0  ·  testdata/example.yaml
+go-figure v0.1.0  ·  tests.yaml
 
   ✓  Get post                                213ms
   ✗  Create post                              89ms
@@ -109,6 +109,8 @@ tests:
 
 All assertion fields are optional. A test with no assertions runs as a smoke/reachability check.
 
+`request.timeout` defaults to `10s` if omitted.
+
 ---
 
 ## Environment variables
@@ -122,7 +124,7 @@ This works natively with CI secret injection — no extra tooling needed.
 ## Development
 
 ```bash
-go test ./...          # run all tests
+go test ./... -race    # run all tests
 golangci-lint run      # lint
 go build -o go-figure  # build binary
 ```

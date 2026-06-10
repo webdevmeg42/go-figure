@@ -29,12 +29,7 @@ func Run(suite *config.Suite) []Result {
 }
 
 func runTest(test config.Test) Result {
-	timeout := test.Request.Timeout.Duration
-	if timeout == 0 {
-		timeout = 10 * time.Second
-	}
-
-	ctx, cancel := context.WithTimeout(context.Background(), timeout)
+	ctx, cancel := context.WithTimeout(context.Background(), test.Request.Timeout.Duration)
 	defer cancel()
 
 	var bodyReader io.Reader = http.NoBody
